@@ -36,6 +36,7 @@ import net.minecraft.client.render.model.BakedModel;
 import net.minecraft.client.render.model.BasicBakedModel;
 import net.minecraft.client.texture.Sprite;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -305,5 +306,10 @@ public class EmiAgnosForge extends EmiAgnos {
 			}
 		}
 		return fuelMap;
+	}
+
+	@Override
+	protected boolean isEnchantableAgnos(ItemStack stack, Enchantment enchantment) {
+		return true;
 	}
 }

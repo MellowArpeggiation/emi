@@ -36,6 +36,7 @@ import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenCustomHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectArraySet;
+import it.unimi.dsi.fastutil.objects.Reference2ObjectOpenHashMap;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.resource.language.I18n;
 import net.minecraft.util.Identifier;
@@ -52,7 +53,7 @@ public class EmiRecipes {
 
 	public static Map<EmiStack, List<EmiRecipe>> byWorkstation = Maps.newHashMap();
 	public static List<EmiRecipeDecorator> decorators = Lists.newArrayList();
-	
+
 	public static void clear() {
 		setWorker(null);
 		lateRecipes.clear();
@@ -139,7 +140,7 @@ public class EmiRecipes {
 			this.categories = categories.stream().distinct().toList();
 			this.workstations = workstations;
 			this.recipes = List.copyOf(recipes);
-	
+
 			Object2IntMap<Identifier> duplicateIds = new Object2IntOpenHashMap<>();
 			Set<Identifier> incorrectIds = new ObjectArraySet<>();
 			for (EmiRecipe recipe : recipes) {
@@ -171,7 +172,7 @@ public class EmiRecipes {
 					}
 				}
 			}
-	
+
 			if (EmiConfig.devMode) {
 				for (Identifier id : duplicateIds.keySet()) {
 					EmiReloadLog.warn(duplicateIds.getInt(id) + " recipes loaded with the same id: " + id);
@@ -180,7 +181,7 @@ public class EmiRecipes {
 					EmiReloadLog.warn("Recipe " + id + " not present in recipe manager. Consider prefixing its path with '/' if it is synthetic.");
 				}
 			}
-	
+
 			Map<EmiStack, Set<EmiRecipe>> byInput = new Object2ObjectOpenCustomHashMap<>(new EmiStackList.ComparisonHashStrategy());
 			Map<EmiStack, Set<EmiRecipe>> byOutput = new Object2ObjectOpenCustomHashMap<>(new EmiStackList.ComparisonHashStrategy());
 

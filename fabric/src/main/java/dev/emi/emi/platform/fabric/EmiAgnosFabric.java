@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Consumer;
 
+import net.minecraft.enchantment.Enchantment;
 import org.apache.commons.lang3.text.WordUtils;
 
 import com.google.common.collect.Lists;
@@ -220,7 +221,7 @@ public class EmiAgnosFabric extends EmiAgnos {
 		}
 		Sprite sprite = sprites[0];
 		int color = FluidVariantRendering.getColor(fluid);
-		
+
 		EmiRenderHelper.drawTintedSprite(matrices, sprite, color, x, y, xOff, yOff, width, height);
 	}
 
@@ -247,5 +248,10 @@ public class EmiAgnosFabric extends EmiAgnos {
 			}
 		}
 		return fuelMap;
+	}
+
+	@Override
+	protected boolean isEnchantableAgnos(ItemStack stack, Enchantment enchantment) {
+		return true;
 	}
 }
